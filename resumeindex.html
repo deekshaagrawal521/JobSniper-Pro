@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <link rel="stylesheet" href="resume style.css">
+</head>
+<body>
+    <header>
+        <h1>Quick Resume Builder</h1>
+    </header>
+    <main>
+        <section id="form-section">
+            <h2>Enter Your Details</h2>
+            <form id="resume-form">
+                <label for="template-selection">Select Template:</label>
+                <select id="template-selection">
+                    <option value="default">Default Template</option>
+                    <option value="modern">Modern Template</option>
+                    <option value="elegant">Elegant Template</option>
+                </select>
+
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" placeholder="Your Name" required>
+
+                <label for="position">Position Applied For:</label>
+                <input type="text" id="position" placeholder="e.g., Software Developer" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Your Email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" placeholder="Your Phone" required>
+
+                <label for="summary">Summary:</label>
+                <textarea id="summary" rows="4" placeholder="Brief summary about yourself"></textarea>
+
+                <label for="skills">Skills:</label>
+                <textarea id="skills" rows="3" placeholder="Comma-separated skills (e.g., JavaScript, Python)"></textarea>
+
+                <label for="projects">Projects:</label>
+                <textarea id="projects" rows="4" placeholder="List your projects with descriptions"></textarea>
+
+                <label for="achievements">Achievements:</label>
+                <textarea id="achievements" rows="3" placeholder="List your achievements"></textarea>
+
+                <label for="experience">Work Experience:</label>
+                <textarea id="experience" rows="4" placeholder="Details about your previous jobs"></textarea>
+
+                <label for="education">Education:</label>
+                <textarea id="education" rows="4" placeholder="Your education background"></textarea>
+
+                <button type="button" id="generate-resume">Generate Resume</button>
+            </form>
+        </section>
+
+        <section id="resume-preview">
+            <h2>Resume Preview</h2>
+            <div id="resume-output" class="template-default"></div>
+            <button id="download-pdf">Download PDF</button>
+        </section>
+    </main>
+    <script src="script resume builder.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+</body>
+</html>

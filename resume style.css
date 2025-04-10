@@ -1,0 +1,149 @@
+/* General Styles */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0f172a;
+    color: #e2e8f0;
+}
+
+header {
+    background-color: #0f172a;
+    color: #22d3ee;
+    text-align: center;
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+
+main {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #1e293b;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.1);
+}
+
+/* === Form Section === */
+#form-section {
+    margin-bottom: 30px;
+}
+
+#form-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #22d3ee;
+}
+
+/* === Template Styles === */
+.template-default,
+.template-modern,
+.template-elegant {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #0f172a;
+    color: #f1f5f9;
+    box-shadow: 0 4px 20px rgba(34, 211, 238, 0.1);
+}
+
+/* Default Template */
+.template-default h2,
+.template-modern h2,
+.template-elegant h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    color: #22d3ee;
+}
+
+.template-default h3,
+.template-modern h3,
+.template-elegant h3 {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    color: #38bdf8;
+}
+
+.template-default p,
+.template-modern p,
+.template-elegant p {
+    font-size: 1rem;
+    margin: 10px 0;
+}
+
+.template-modern {
+    border-left: 6px solid #22d3ee;
+}
+
+.template-elegant {
+    border: 1px solid #334155;
+    background-color: #1e293b;
+    color: #cbd5e1;
+}
+
+/* === Form Styles === */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #cbd5e1;
+}
+
+input, textarea, select {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid #334155;
+    border-radius: 8px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: #22d3ee;
+}
+
+/* Buttons */
+button,
+#download-pdf {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #22d3ee;
+    color: #0f172a;
+    border: none;
+    border-radius: 9999px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover,
+#download-pdf:hover {
+    background-color: #67e8f9;
+}
+
+/* === Resume Preview Section === */
+#resume-preview {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(34, 211, 238, 0.1);
+}
+
+/* Lists inside templates */
+.template-modern ul,
+.template-elegant ul {
+    list-style-type: square;
+    margin-left: 20px;
+    color: #94a3b8;
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Get Started | JobSniper Pro</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #analysis-result {
+      margin-top: 30px;
+      padding: 20px;
+      background: #1e293b;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      border-left: 6px solid #22d3ee;
+      font-family: 'Segoe UI', sans-serif;
+      color: #e2e8f0;
+      font-size: 16px;
+      white-space: pre-wrap;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+
+    #analysis-result strong {
+      font-size: 18px;
+      color: #67e8f9;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .feedback-bullet {
+      margin-left: 15px;
+      line-height: 1.6;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .section-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem auto;
+    }
+
+    .section-tabs button {
+      background-color: #0f172a;
+      border: 2px solid #22d3ee;
+      color: #22d3ee;
+      padding: 0.8rem 1.5rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .section-tabs button.active, .section-tabs button:hover {
+      background-color: #22d3ee;
+      color: black;
+    }
+
+    .form-section {
+      display: none;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">JobSniper Pro</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="#">Features</a></li>
+        <li><a href="#">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="get-started">
+    <div class="section-tabs">
+      <button id="btn-analyze" class="active">Analyze Existing Resume</button>
+      <button id="btn-create">Create New Resume</button>
+    </div>
+
+    <div id="analyze-section" class="form-section active">
+      <h2>Upload Your Resume</h2>
+      <p>Get feedback and suggestions to make your resume better!</p>
+      <form id="upload-form" enctype="multipart/form-data">
+        <label for="resume-upload" class="upload-box">
+          <input type="file" id="resume-upload" name="resume" accept=".pdf,.doc,.docx" required />
+          <span>📄 Click or drag file here</span>
+        </label>
+        <div class="section-title">Paste Job Description</div>
+        <textarea id="jd-input" rows="6" placeholder="Paste the Job Description here..." style="width: 100%; padding: 10px; border: 1px solid #334155; border-radius: 6px; background-color: #1e293b; color: white;"></textarea>
+        <br><br>
+        <button type="submit">Analyze Now 🚀</button>
+      </form>
+      <div id="analysis-result" class="hidden"></div>
+    </div>
+
+    <div id="create-section" class="form-section">
+      <h2>Create Your Resume</h2>
+      <p>Use our built-in resume builder to craft a professional resume.</p>
+      <a href="resumeindex.html" class="cta-button">Go to Resume Builder ✍️</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 JobSniper Pro. All rights reserved.
+  </footer>
+
+  <script>
+    const form = document.getElementById('upload-form');
+    const fileInput = document.getElementById('resume-upload');
+    const resultBox = document.getElementById('analysis-result');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please select a resume file!');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('resume', file);
+
+      resultBox.innerHTML = 'Analyzing... please wait ⏳';
+      resultBox.classList.remove('hidden');
+
+      try {
+        const response = await fetch('/analyze', {
+          method: 'POST',
+          body: formData,
+        });
+
+        const data = await response.json();
+        if (data.feedback) {
+          const bullets = data.feedback
+            .split('\n')
+            .map(line => line.trim())
+            .filter(line => line)
+            .map(line => `<div class="feedback-bullet">• ${line}</div>`)
+            .join('');
+
+          resultBox.innerHTML = `<strong>Resume Feedback:</strong><br>${bullets}`;
+        } else if (data.error) {
+          resultBox.innerHTML = `⚠️ Error: ${data.error}`;
+        }
+      } catch (err) {
+        resultBox.innerHTML = '❌ An error occurred. Please try again later.';
+        console.error(err);
+      }
+    });
+
+    // Toggle logic
+    const analyzeBtn = document.getElementById('btn-analyze');
+    const createBtn = document.getElementById('btn-create');
+    const analyzeSection = document.getElementById('analyze-section');
+    const createSection = document.getElementById('create-section');
+
+    analyzeBtn.addEventListener('click', () => {
+      analyzeBtn.classList.add('active');
+      createBtn.classList.remove('active');
+      analyzeSection.classList.add('active');
+      createSection.classList.remove('active');
+    });
+
+    createBtn.addEventListener('click', () => {
+      createBtn.classList.add('active');
+      analyzeBtn.classList.remove('active');
+      createSection.classList.add('active');
+      analyzeSection.classList.remove('active');
+    });
+  </script>
+  
+</body>
+</html>
